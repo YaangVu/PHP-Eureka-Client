@@ -9,6 +9,24 @@ namespace EurekaClient\Instance;
  */
 class Instance extends Parameters
 {
+    public function __construct()
+    {
+        $this->setInstanceId("Unknown")
+             ->setHostName('Unknown')
+             ->setApp("Unknown")
+             ->setIpAddr('127.0.0.1')
+             ->setPort(8000)
+             ->setSecurePort(433)
+             ->setHomePageUrl('http://localhost')
+             ->setStatusPageUrl('http://localhost/status')
+             ->setHealthCheckUrl('http://localhost/health-check')
+             ->setSecureHealthCheckUrl('https://localhost/health-check')
+             ->setVipAddress('unknown_vip_address')
+             ->setSecureVipAddress('unknown_secure_vip_address')
+             ->setMetadata(new Metadata())
+             ->setDataCenterInfo(new DataCenterInfo());
+    }
+
     /**
      * @param string $instanceId
      *
@@ -50,7 +68,7 @@ class Instance extends Parameters
     }
 
     /**
-     * @param int $port
+     * @param int  $port
      * @param bool $enabled
      *
      * @return $this
@@ -58,21 +76,21 @@ class Instance extends Parameters
     public function setPort($port, $enabled = true)
     {
         return $this->set('port', [
-            '$' => $port,
+            '$'        => $port,
             '@enabled' => ($enabled) ? 'true' : 'false'
         ]);
     }
 
     /**
      * @param string $port
-     * @param bool $enabled
+     * @param bool   $enabled
      *
      * @return $this
      */
     public function setSecurePort($port, $enabled = true)
     {
         return $this->set('securePort', [
-            '$' => $port,
+            '$'        => $port,
             '@enabled' => ($enabled) ? 'true' : 'false'
         ]);
     }

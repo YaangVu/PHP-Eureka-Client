@@ -1,7 +1,11 @@
 {
   "name": "yaangvu/php-eureka-client",
   "description": "PHP client for the Netflix Eureka server.",
-  "keywords": ["eureka", "Netflix-eureka", "eureka client"],
+  "keywords": [
+    "eureka",
+    "Netflix-eureka",
+    "eureka client"
+  ],
   "homepage": "https://github.com/YaangVu/php-eureka-client",
   "license": "MIT",
   "authors": [
@@ -11,7 +15,8 @@
     }
   ],
   "require": {
-    "guzzlehttp/guzzle": "^7.3"
+    "guzzlehttp/guzzle": "^7.3",
+    "ext-json": "*"
   },
   "autoload": {
     "psr-4": {

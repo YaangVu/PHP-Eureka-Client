@@ -2,10 +2,11 @@
 
 namespace EurekaClient;
 
+use EurekaClient\Instance\Instance;
+use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
-use EurekaClient\Instance\Instance;
 
 /**
  * Class EurekaClient
@@ -32,41 +33,58 @@ class EurekaClient
     /**
      * @var string $context
      */
-    private $context;
+    private $context = 'eureka';
+
+
+    /**
+     * @var string $eurekaUri
+     */
+    private $eurekaUri;
+
+
+    /**
+     * EurekaClient constructor.
+     */
+    public function __construct()
+    {
+        $this->client = new Client();
+    }
 
     /**
      * @return string
      */
     private function getEurekaUri()
     {
-        return $this->host . ':' . $this->port . '/' . $this->context;
+        return $this->eurekaUri ?: $this->host . ':' . $this->port . '/' . $this->context;
     }
 
     /**
-     * EurekaClient constructor.
-     *
-     * @param string $host
-     * @param int $port
-     * @param ClientInterface $client
-     * @param string $context
+     * @param $uri
      */
-    public function __construct($host, $port, ClientInterface $client, $context = 'eureka/v2 ')
+    private function setEurekaUri($uri)
+    {
+        $this->eurekaUri = $uri;
+    }
+
+    private function setEurekaHost($host)
     {
         $this->host = $host;
+    }
+
+    private function setEurekaPort($port)
+    {
         $this->port = $port;
-        $this->context = $context;
-        $this->client = $client;
     }
 
     /**
      * Register app in eureka.
      *
-     * @param string $appId
+     * @param string   $appId
      * @param Instance $data
      *
+     * @return ResponseInterface
      * @throws GuzzleException
      *
-     * @return ResponseInterface
      */
     public function register($appId, Instance $data)
     {
@@ -83,9 +101,9 @@ class EurekaClient
      * @param string $appId
      * @param string $instanceId
      *
+     * @return ResponseInterface
      * @throws GuzzleException
      *
-     * @return ResponseInterface
      */
     public function deRegister($appId, $instanceId)
     {
@@ -98,9 +116,9 @@ class EurekaClient
      * @param string $appId
      * @param string $instanceId
      *
+     * @return ResponseInterface
      * @throws GuzzleException
      *
-     * @return ResponseInterface
      */
     public function heartBeat($appId, $instanceId)
     {
@@ -110,9 +128,9 @@ class EurekaClient
     /**
      * Get all registered applications.
      *
+     * @return array
      * @throws GuzzleException
      *
-     * @return array
      */
     public function getAllApps()
     {
@@ -122,7 +140,7 @@ class EurekaClient
             ]
         ]);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return json_decode($response->getBody(), true);
     }
 
     /**
@@ -130,9 +148,9 @@ class EurekaClient
      *
      * @param string $appId
      *
+     * @return array
      * @throws GuzzleException
      *
-     * @return array
      */
     public function getApp($appId)
     {
@@ -142,7 +160,7 @@ class EurekaClient
             ]
         ]);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return json_decode($response->getBody(), true);
     }
 
     /**
@@ -151,9 +169,9 @@ class EurekaClient
      * @param string $appId
      * @param string $instanceId
      *
+     * @return array
      * @throws GuzzleException
      *
-     * @return array
      */
     public function getAppInstance($appId, $instanceId)
     {
@@ -163,7 +181,7 @@ class EurekaClient
             ]
         ]);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return json_decode($response->getBody(), true);
     }
 
     /**
@@ -171,9 +189,9 @@ class EurekaClient
      *
      * @param string $instanceId
      *
+     * @return array
      * @throws GuzzleException
      *
-     * @return array
      */
     public function getInstance($instanceId)
     {
@@ -183,7 +201,7 @@ class EurekaClient
             ]
         ]);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return json_decode($response->getBody(), true);
     }
 
     /**
@@ -192,17 +210,18 @@ class EurekaClient
      * @param string $appId
      * @param string $instanceId
      *
+     * @return ResponseInterface
      * @throws GuzzleException
      *
-     * @return ResponseInterface
      */
     public function takeInstanceOut($appId, $instanceId)
     {
-        return $this->client->request('PUT', $this->getEurekaUri() . '/apps/' . $appId . '/' . $instanceId . '/status', [
-            'query' => [
-                'value' => 'OUT_OF_SERVICE'
-            ]
-        ]);
+        return $this->client->request('PUT', $this->getEurekaUri() . '/apps/' . $appId . '/' . $instanceId . '/status',
+                                      [
+                                          'query' => [
+                                              'value' => 'OUT_OF_SERVICE'
+                                          ]
+                                      ]);
     }
 
     /**
@@ -211,17 +230,18 @@ class EurekaClient
      * @param string $appId
      * @param string $instanceId
      *
+     * @return ResponseInterface
      * @throws GuzzleException
      *
-     * @return ResponseInterface
      */
     public function putInstanceBack($appId, $instanceId)
     {
-        return $this->client->request('PUT', $this->getEurekaUri() . '/apps/' . $appId . '/' . $instanceId . '/status', [
-            'query' => [
-                'value' => 'UP'
-            ]
-        ]);
+        return $this->client->request('PUT', $this->getEurekaUri() . '/apps/' . $appId . '/' . $instanceId . '/status',
+                                      [
+                                          'query' => [
+                                              'value' => 'UP'
+                                          ]
+                                      ]);
     }
 
     /**
@@ -229,17 +249,18 @@ class EurekaClient
      *
      * @param string $appId
      * @param string $instanceId
-     * @param array $metadata
-     *
-     * @throws GuzzleException
+     * @param array  $metadata
      *
      * @return ResponseInterface
+     * @throws GuzzleException
+     *
      */
     public function updateAppInstanceMetadata($appId, $instanceId, array $metadata)
     {
-        return $this->client->request('PUT', $this->getEurekaUri() . '/apps/' . $appId . '/' . $instanceId . '/metadata', [
-            'query' => $metadata
-        ]);
+        return $this->client->request('PUT',
+                                      $this->getEurekaUri() . '/apps/' . $appId . '/' . $instanceId . '/metadata', [
+                                          'query' => $metadata
+                                      ]);
     }
 
     /**
@@ -247,9 +268,9 @@ class EurekaClient
      *
      * @param string $vipAddress
      *
+     * @return array
      * @throws GuzzleException
      *
-     * @return array
      */
     public function getInstancesByVipAddress($vipAddress)
     {
@@ -259,7 +280,7 @@ class EurekaClient
             ]
         ]);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return json_decode($response->getBody(), true);
     }
 
     /**
@@ -267,9 +288,9 @@ class EurekaClient
      *
      * @param string $secureVipAddress
      *
+     * @return array
      * @throws GuzzleException
      *
-     * @return array
      */
     public function getInstancesBySecureVipAddress($secureVipAddress)
     {
@@ -279,6 +300,6 @@ class EurekaClient
             ]
         ]);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return json_decode($response->getBody(), true);
     }
 }

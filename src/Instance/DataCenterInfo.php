@@ -10,6 +10,16 @@ namespace EurekaClient\Instance;
 class DataCenterInfo extends Parameters
 {
     /**
+     * DataCenterInfo constructor.
+     */
+    public function __construct()
+    {
+        $this
+            ->setName('YaangVu')
+            ->setClass('com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo');
+    }
+
+    /**
      * @param string $name
      *
      * @return $this
