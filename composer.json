@@ -1,24 +1,24 @@
 {
-  "name": "fluffy/php-eureka-client",
+  "name": "yaangvu/php-eureka-client",
   "description": "PHP client for the Netflix Eureka server.",
   "keywords": ["eureka", "Netflix-eureka", "eureka client"],
-  "homepage": "https://github.com/PavelLoparev/php-eureka-client",
-  "license": "GPL-3.0-or-later",
+  "homepage": "https://github.com/YaangVu/php-eureka-client",
+  "license": "MIT",
   "authors": [
     {
-      "name": "Pavel Loparev",
-      "homepage": "https://github.com/PavelLoparev"
+      "name": "YaangVu",
+      "homepage": "https://github.com/YaangVu"
     }
   ],
   "require": {
-    "guzzlehttp/guzzle": "~6"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "^5.7"
+    "guzzlehttp/guzzle": "^7.3"
   },
   "autoload": {
     "psr-4": {
       "EurekaClient\\": "src"
     }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5"
   }
 }

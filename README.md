@@ -7,13 +7,13 @@ PHP client for the [Netflix Eureka server](https://github.com/Netflix/eureka). S
 ## Installation
 Run
 ```
-composer require fluffy/php-eureka-client
+composer require yaangvu/php-eureka-client
 ```
 or add dependency to your composer.json file
 ```
 "require": {
     ...
-    "fluffy/php-eureka-client": "^1.0"
+    "yaangvu/php-eureka-client": "^1.0"
 }
 
 ```
@@ -128,3 +128,5 @@ catch (Exception $e) {
   echo $e->getMessage() . PHP_EOL;
 }
 ```
+## Fork from
+https://github.com/PavelLoparev/php-eureka-client
