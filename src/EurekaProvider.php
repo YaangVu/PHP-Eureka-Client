@@ -28,10 +28,8 @@ class EurekaProvider extends ServiceProvider
     public function register()
     {
         $appName              = env('APP_NAME', 'UNKNOWN');
-        $instanceId           = env('APP_NAME', 'UNKNOWN') . ':'
-            . env('APP_LOCAL_IP', '127.0.0.2') . ':'
-            . env('APP_PORT', 8000);
-        $homeUrl              = env('APP_URL', 'http://localhost:8000');
+        $homeUrl              = env('APP_LOCAL_IP', '127.0.0.1') . ':' . env('APP_PORT', 8000);
+        $instanceId           = env('APP_NAME', 'UNKNOWN') . ':' . $homeUrl;
         $statusPageUrl        = "$homeUrl/status";
         $healthCheckUrl       = "$homeUrl/health-check";
         $secureHealthCheckUrl = "$homeUrl/health-check";
