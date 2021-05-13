@@ -19,12 +19,10 @@ or add dependency to your composer.json file
 ```
 ## Usage example
 ### 1. Use needed packages
+
 ```php
-use EurekaClient\EurekaClient;
-use EurekaClient\Instance\Instance;
-use EurekaClient\Instance\Metadata;
-use EurekaClient\Instance\DataCenterInfo;
-use GuzzleHttp\Client;
+
+
 ```
 ### 2. Create Eureka app instance
 ```php

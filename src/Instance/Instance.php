@@ -1,6 +1,6 @@
 <?php
 
-namespace EurekaClient\Instance;
+namespace YaangVu\EurekaClient\Instance;
 
 /**
  * Class Instance
@@ -10,6 +10,11 @@ namespace EurekaClient\Instance;
 class Instance extends Parameters
 {
     public function __construct()
+    {
+        $this->init();
+    }
+
+    public function init()
     {
         $this->setInstanceId("Unknown")
              ->setHostName('Unknown')
@@ -23,7 +28,7 @@ class Instance extends Parameters
              ->setSecureHealthCheckUrl('https://localhost/health-check')
              ->setVipAddress('unknown_vip_address')
              ->setSecureVipAddress('unknown_secure_vip_address')
-             ->setMetadata(new Metadata())
+            //->setMetadata(new Metadata())
              ->setDataCenterInfo(new DataCenterInfo());
     }
 

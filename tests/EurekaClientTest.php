@@ -2,13 +2,13 @@
 
 namespace EurekaClientTests;
 
-use EurekaClient\EurekaClient;
-use EurekaClient\Instance\DataCenterInfo;
-use EurekaClient\Instance\Instance;
-use EurekaClient\Instance\Metadata;
 use GuzzleHttp\Client;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
+use YaangVu\EurekaClient\EurekaClient;
+use YaangVu\EurekaClient\Instance\DataCenterInfo;
+use YaangVu\EurekaClient\Instance\Instance;
+use YaangVu\EurekaClient\Instance\Metadata;
 
 /**
  * Class EurekaClientTest

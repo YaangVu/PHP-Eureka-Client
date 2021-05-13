@@ -1,6 +1,6 @@
 <?php
 
-namespace EurekaClient\Instance;
+namespace YaangVu\EurekaClient\Instance;
 
 /**
  * Class DataCenterInfo
