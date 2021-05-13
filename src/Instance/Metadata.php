@@ -9,13 +9,8 @@ namespace EurekaClient\Instance;
  */
 class Metadata extends Parameters
 {
-    /**
-     * @param string $key
-     * @param mixed $value
-     *
-     * @return $this
-     */
-    public function set($key, $value)
+
+    public function set(string $key, $value): Parameters
     {
         return parent::set($key, $value);
     }

@@ -12,15 +12,15 @@ abstract class Parameters
     /**
      * @var array
      */
-    private $parameters = [];
+    private array $parameters = [];
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      *
      * @return $this
      */
-    protected function set($key, $value)
+    protected function set(string $key, $value): Parameters
     {
         $this->parameters[$key] = $value;
 
@@ -28,9 +28,21 @@ abstract class Parameters
     }
 
     /**
+     * @param string $key
+     *
+     * @return mixed
+     */
+    public function get(string $key)
+    {
+        if (isset($this->parameters[$key]))
+            return $this->parameters[$key];
+        else return null;
+    }
+
+    /**
      * @return array
      */
-    public function export()
+    public function export(): array
     {
         return $this->parameters;
     }

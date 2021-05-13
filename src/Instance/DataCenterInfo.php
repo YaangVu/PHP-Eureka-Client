@@ -15,7 +15,7 @@ class DataCenterInfo extends Parameters
     public function __construct()
     {
         $this
-            ->setName('YaangVu')
+            ->setName('MyOwn')
             ->setClass('com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo');
     }
 
@@ -24,7 +24,7 @@ class DataCenterInfo extends Parameters
      *
      * @return $this
      */
-    public function setName($name)
+    public function setName(string $name): DataCenterInfo
     {
         return $this->set('name', $name);
     }
@@ -34,7 +34,7 @@ class DataCenterInfo extends Parameters
      *
      * @return $this
      */
-    public function setClass($class)
+    public function setClass(string $class): DataCenterInfo
     {
         return $this->set('@class', $class);
     }
@@ -44,7 +44,7 @@ class DataCenterInfo extends Parameters
      *
      * @return $this
      */
-    public function setMetadata(Metadata $metadata)
+    public function setMetadata(Metadata $metadata): DataCenterInfo
     {
         return $this->set('metadata', $metadata->export());
     }

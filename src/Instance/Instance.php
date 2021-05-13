@@ -32,7 +32,7 @@ class Instance extends Parameters
      *
      * @return $this
      */
-    public function setInstanceId($instanceId)
+    public function setInstanceId(string $instanceId): Instance
     {
         return $this->set('instanceId', $instanceId);
     }
@@ -42,7 +42,7 @@ class Instance extends Parameters
      *
      * @return $this
      */
-    public function setHostName($hostName)
+    public function setHostName(string $hostName): Instance
     {
         return $this->set('hostName', $hostName);
     }
@@ -52,7 +52,7 @@ class Instance extends Parameters
      *
      * @return $this
      */
-    public function setApp($app)
+    public function setApp(string $app): Instance
     {
         return $this->set('app', $app);
     }
@@ -62,7 +62,7 @@ class Instance extends Parameters
      *
      * @return $this
      */
-    public function setIpAddr($ipAddr)
+    public function setIpAddr(string $ipAddr): Instance
     {
         return $this->set('ipAddr', $ipAddr);
     }
@@ -73,7 +73,7 @@ class Instance extends Parameters
      *
      * @return $this
      */
-    public function setPort($port, $enabled = true)
+    public function setPort(int $port, bool $enabled = true): Instance
     {
         return $this->set('port', [
             '$'        => $port,
@@ -87,7 +87,7 @@ class Instance extends Parameters
      *
      * @return $this
      */
-    public function setSecurePort($port, $enabled = true)
+    public function setSecurePort(int $port, bool $enabled = true): Instance
     {
         return $this->set('securePort', [
             '$'        => $port,
@@ -100,7 +100,7 @@ class Instance extends Parameters
      *
      * @return $this
      */
-    public function setHomePageUrl($homePageUrl)
+    public function setHomePageUrl(string $homePageUrl): Instance
     {
         return $this->set('homePageUrl', $homePageUrl);
     }
@@ -110,7 +110,7 @@ class Instance extends Parameters
      *
      * @return $this
      */
-    public function setStatusPageUrl($statusPageUrl)
+    public function setStatusPageUrl(string $statusPageUrl): Instance
     {
         return $this->set('statusPageUrl', $statusPageUrl);
     }
@@ -120,7 +120,7 @@ class Instance extends Parameters
      *
      * @return $this
      */
-    public function setHealthCheckUrl($healthCheckUrl)
+    public function setHealthCheckUrl(string $healthCheckUrl): Instance
     {
         return $this->set('healthCheckUrl', $healthCheckUrl);
     }
@@ -130,7 +130,7 @@ class Instance extends Parameters
      *
      * @return $this
      */
-    public function setSecureHealthCheckUrl($secureHealthCheckUrl)
+    public function setSecureHealthCheckUrl(string $secureHealthCheckUrl): Instance
     {
         return $this->set('secureHealthCheckUrl', $secureHealthCheckUrl);
     }
@@ -140,7 +140,7 @@ class Instance extends Parameters
      *
      * @return $this
      */
-    public function setVipAddress($vipAddress)
+    public function setVipAddress(string $vipAddress): Instance
     {
         return $this->set('vipAddress', $vipAddress);
     }
@@ -150,7 +150,7 @@ class Instance extends Parameters
      *
      * @return $this
      */
-    public function setSecureVipAddress($secureVipAddress)
+    public function setSecureVipAddress(string $secureVipAddress): Instance
     {
         return $this->set('secureVipAddress', $secureVipAddress);
     }
@@ -160,7 +160,7 @@ class Instance extends Parameters
      *
      * @return $this
      */
-    public function setMetadata(Metadata $metadata)
+    public function setMetadata(Metadata $metadata): Instance
     {
         return $this->set('metadata', $metadata->export());
     }
@@ -170,7 +170,7 @@ class Instance extends Parameters
      *
      * @return $this
      */
-    public function setDataCenterInfo(DataCenterInfo $dataCenterInfo)
+    public function setDataCenterInfo(DataCenterInfo $dataCenterInfo): Instance
     {
         return $this->set('dataCenterInfo', $dataCenterInfo->export());
     }
