@@ -49,5 +49,7 @@ class EurekaProvider extends ServiceProvider
         $eurekaClient->setEurekaUri($eurekaUri);
         $eurekaClient->register();
         $eurekaClient->heartBeat();
+
+        self::$client = $eurekaClient;
     }
 }

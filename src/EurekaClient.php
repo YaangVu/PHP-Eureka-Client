@@ -58,7 +58,7 @@ class EurekaClient
     {
         $this->client     = new Client();
         $this->instance   = $instance;
-        $this->app      = $instance->get('app');
+        $this->app        = $instance->get('app');
         $this->data       = $instance->export();
         $this->instanceId = $instance->get('instanceId');
     }
