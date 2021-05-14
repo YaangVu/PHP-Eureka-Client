@@ -17,7 +17,7 @@ class EurekaProvider extends ServiceProvider
         //
     }
 
-    public static $client;
+    public static EurekaClient $client;
 
     /**
      * Register the application services.
