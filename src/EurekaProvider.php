@@ -41,6 +41,7 @@ class EurekaProvider extends ServiceProvider
                  ->setHomePageUrl($homeUrl)
                  ->setStatusPageUrl($statusPageUrl)
                  ->setHealthCheckUrl($healthCheckUrl)
+                 ->setVipAddress($appName)
                  ->setSecureHealthCheckUrl($secureHealthCheckUrl);
 
         $eurekaUri    = env('EUREKA_URL');

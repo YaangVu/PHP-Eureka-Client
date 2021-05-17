@@ -26,7 +26,7 @@ class Instance extends Parameters
              ->setStatusPageUrl('http://localhost/status')
              ->setHealthCheckUrl('http://localhost/health-check')
              ->setSecureHealthCheckUrl('https://localhost/health-check')
-             ->setVipAddress('unknown_vip_address')
+             ->setVipAddress('UnknownApp')
              ->setSecureVipAddress('unknown_secure_vip_address')
             //->setMetadata(new Metadata())
              ->setDataCenterInfo(new DataCenterInfo());
