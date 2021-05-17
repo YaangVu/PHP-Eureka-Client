@@ -16,12 +16,12 @@ class Instance extends Parameters
 
     public function init()
     {
-        $this->setInstanceId("Unknown")
-             ->setHostName('Unknown')
-             ->setApp("Unknown")
-             ->setIpAddr('127.0.0.1')
+        $this->setInstanceId("UnknownInstanceId")
+             ->setHostName('localhost')
+             ->setApp("UnknownApp")
+             ->setIpAddr('0.0.0.0')
              ->setPort(8000)
-             ->setSecurePort(433)
+             ->setSecurePort(433, false)
              ->setHomePageUrl('http://localhost')
              ->setStatusPageUrl('http://localhost/status')
              ->setHealthCheckUrl('http://localhost/health-check')

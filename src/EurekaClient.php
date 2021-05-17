@@ -73,20 +73,28 @@ class EurekaClient
 
     /**
      * @param $uri
-     */
-    public function setEurekaUri($uri)
+     *
+     * @return EurekaClient
+     * ≈*/
+    public function setEurekaUri($uri): EurekaClient
     {
         $this->eurekaUri = $uri;
+
+        return $this;
     }
 
-    public function setEurekaHost($host)
+    public function setEurekaHost($host): EurekaClient
     {
         $this->host = $host;
+
+        return $this;
     }
 
-    public function setEurekaPort($port)
+    public function setEurekaPort($port): EurekaClient
     {
         $this->port = $port;
+
+        return $this;
     }
 
     /**

@@ -13,5 +13,9 @@
 |
 */
 
-$router->get('/status', function () { return "UP"; });
-$router->get('/health-check', function () { return "OK"; });
+$router->get('/status', function () {
+    return response()->json("OK");
+});
+$router->get('/health-check', function () {
+    return response()->json(['status' => 'UP']);
+});

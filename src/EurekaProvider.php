@@ -28,8 +28,8 @@ class EurekaProvider extends ServiceProvider
     public function register()
     {
         $appName              = env('APP_NAME', 'UNKNOWN');
-        $host                 = env('APP_LOCAL_IP', '127.0.0.1') . ':' . env('APP_PORT', 8000);
-        $instanceId           = env('APP_NAME', 'UNKNOWN') . ':' . $host;
+        $host                 = env('APP_IP', '127.0.0.1') . ':' . env('APP_PORT', 8000);
+        $instanceId           = $appName . ':' . $host;
         $homeUrl              = "http://$host";
         $statusPageUrl        = "$homeUrl/status";
         $healthCheckUrl       = "$homeUrl/health-check";
@@ -38,7 +38,6 @@ class EurekaProvider extends ServiceProvider
         $instance = new Instance();
         $instance->setInstanceId($instanceId)
                  ->setApp($appName)
-                 ->setHostName(env('APP_HOST_NAME', $appName))
                  ->setHomePageUrl($homeUrl)
                  ->setStatusPageUrl($statusPageUrl)
                  ->setHealthCheckUrl($healthCheckUrl)
@@ -46,8 +45,8 @@ class EurekaProvider extends ServiceProvider
 
         $eurekaUri    = env('EUREKA_URL');
         $eurekaClient = new EurekaClient($instance);
-        $eurekaClient->setEurekaUri($eurekaUri);
-        $eurekaClient->register();
+        $eurekaClient->setEurekaUri($eurekaUri)
+                     ->register();
         $eurekaClient->heartBeat();
 
         self::$client = $eurekaClient;
