@@ -42,6 +42,8 @@ class EurekaProvider extends ServiceProvider
                  ->setStatusPageUrl($statusPageUrl)
                  ->setHealthCheckUrl($healthCheckUrl)
                  ->setVipAddress($appName)
+                 ->setHostName(env('APP_IP', '127.0.0.1'))
+                 ->setPort(env('APP_PORT', 8000))
                  ->setSecureHealthCheckUrl($secureHealthCheckUrl);
 
         $eurekaUri    = env('EUREKA_URL');
