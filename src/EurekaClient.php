@@ -5,6 +5,7 @@ namespace YaangVu\EurekaClient;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Support\Facades\Log;
 use Psr\Http\Message\ResponseInterface;
 use YaangVu\EurekaClient\Instance\Instance;
 
@@ -105,6 +106,8 @@ class EurekaClient
      */
     public function register(): ResponseInterface
     {
+        Log::info("Register to Eureka: " . env('EUREKA_URL') . " with host: $host");
+
         return $this->client->request('POST', $this->getEurekaUri() . '/apps/' . $this->app, [
             'json' => [
                 'instance' => $this->data
@@ -132,6 +135,8 @@ class EurekaClient
      */
     public function heartBeat(): ResponseInterface
     {
+        Log::info("Send heartbeat to Eureka: " . env('EUREKA_URL') . " with instance: $this->app/$this->instanceId");
+
         return $this->client->request('PUT', $this->getEurekaUri() . '/apps/' . $this->app . '/' . $this->instanceId);
     }
 

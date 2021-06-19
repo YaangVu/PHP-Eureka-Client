@@ -2,6 +2,7 @@
 
 namespace YaangVu\EurekaClient;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 use YaangVu\EurekaClient\Instance\Instance;
 
@@ -48,6 +49,7 @@ class EurekaProvider extends ServiceProvider
 
         $eurekaUri    = env('EUREKA_URL');
         $eurekaClient = new EurekaClient($instance);
+        Log::info("Register to Eureka: " . env('EUREKA_URL') . " with host: $host");
         $eurekaClient->setEurekaUri($eurekaUri)
                      ->register();
         $eurekaClient->heartBeat();
