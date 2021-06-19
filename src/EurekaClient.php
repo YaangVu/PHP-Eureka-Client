@@ -106,7 +106,7 @@ class EurekaClient
      */
     public function register(): ResponseInterface
     {
-        Log::info("Register to Eureka: " . env('EUREKA_URL') . " with host: $host");
+        Log::info("Register to Eureka: " . $this->getEurekaUri(), ['instance' => $this->data]);
 
         return $this->client->request('POST', $this->getEurekaUri() . '/apps/' . $this->app, [
             'json' => [
@@ -135,7 +135,7 @@ class EurekaClient
      */
     public function heartBeat(): ResponseInterface
     {
-        Log::info("Send heartbeat to Eureka: " . env('EUREKA_URL') . " with instance: $this->app/$this->instanceId");
+        Log::info("Send heartbeat to Eureka: " . $this->getEurekaUri() . " with instance: $this->app/$this->instanceId");
 
         return $this->client->request('PUT', $this->getEurekaUri() . '/apps/' . $this->app . '/' . $this->instanceId);
     }
